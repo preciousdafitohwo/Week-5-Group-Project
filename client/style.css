@@ -1,0 +1,42 @@
+
+#main-container{
+    background-color: black;
+ }
+
+ #logo{
+    border: 1px solid white;
+    border-radius: 10px;
+    margin-left: 20px;
+    width: 150px;
+    height: 150px;
+    background-color: rgb(88, 85, 85);
+    
+}
+#search{
+       width: 90%;
+    position: absolute;
+    top: 50px;
+    right: -360px;
+}
+
+#search-bar{
+    width: 60%;
+    height: 10%;
+    border-radius: 20px;
+    background-color: rgb(187, 177, 177);
+    padding: 5px;
+    margin-right: 5px;
+    }
+
+    input::placeholder {
+            color: black; 
+    }
+
+    #search-button{
+    width: 80px;
+    height: 10%;
+    border-radius: 20px;
+    background-color: rgb(187, 177, 177);;
+    padding: 5px;
+    cursor: pointer;
+    }
