@@ -4,12 +4,12 @@
  }
 
  #logo{
-    border: 1px solid white;
-    border-radius: 10px;
+        border-radius: 10px;
     margin-left: 20px;
     width: 150px;
     height: 150px;
     background-color: rgb(88, 85, 85);
+    margin-bottom: 80px;
     
 }
 #search{
@@ -40,3 +40,19 @@
     padding: 5px;
     cursor: pointer;
     }
+
+    .game-container{
+        display: grid;
+    grid-template-columns: repeat(4, 1fr); /* creates 4 columns */
+    grid-template-rows: repeat(2, auto); /* creates 2 rows */
+    gap: 10px; /* space between the divs */
+    }
+
+.game-card{
+    width: 250px;
+    height: 300px;
+    border: 1px dashed white;
+    border-radius: 5px;
+  margin-left: 15px;
+  cursor: pointer;
+}
