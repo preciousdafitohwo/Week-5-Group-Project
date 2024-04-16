@@ -4,10 +4,22 @@ import Database from "better-sqlite3";
 import cors from "cors";
 
 const app = express();
-const db = new Database("preciouses-home-made-database.db");
+const db = new Database("database.db");
 const PORT = 8080;
 app.use(express.json());
 app.use(cors()); // allows the client to communicate with the server without being blocked
+
+// get request to our review database for Reviews.
+app.get("/reviews", function (req, res) {
+  const reviews = db.prepare("SELECT * FROM review_board").all();
+  res.json(reviews)});
+  
+app.post("/leave-review", function (res, req){
+  const newReview = db.prepare(`
+    INSERT INTO review_board (name, review, game_id) VALUES (?, ?, ?)
+  `);
+  newReview.run(req.body.name, request.body.message, request.body.game_id)
+});
 
 //  ----- IGDB uses the POST method basically exclusively -----
 //  ----- This is our main method to fetch game information-----
