@@ -29,6 +29,7 @@
     }
 
     input::placeholder {
+        padding: 15px;
             color: black; 
     }
 
@@ -41,11 +42,26 @@
     cursor: pointer;
     }
 
+    #left-div{
+        width: 600px;
+        height: 700px;
+        border: 1px dashed rgb(31, 12, 134);
+    border-radius: 5px;
+    
+    }
+
+    #large-container{
+    display: flex; 
+    justify-content: space-around; 
+    }
+
     .game-container{
-        display: grid;
+    width: 75%;
+    display: grid;
     grid-template-columns: repeat(4, 1fr); /* creates 4 columns */
     grid-template-rows: repeat(2, auto); /* creates 2 rows */
     gap: 10px; /* space between the divs */
+    
     }
 
 .game-card{
