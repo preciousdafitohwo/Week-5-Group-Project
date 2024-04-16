@@ -1,13 +1,13 @@
 //  ----- Get some things from index.html -----
 const gameData = document.getElementById("gameData");
 const userSubmitForm = document.getElementById("userSubmitForm");
-
+const gameContainer = document.getElementById("game-container")
 //  ----- Get user search term -----
 
 async function handleFormSubmit(event) {
-  gameData.innerHTML = "";
+  gameContainer.innerHTML = "";
   let loading = `<p class="loading">Loading new games...</p>`;
-  gameData.insertAdjacentHTML("afterbegin", loading);
+  gameContainer.insertAdjacentHTML("afterbegin", loading);
 
   event.preventDefault();
 
@@ -48,7 +48,7 @@ async function testAPI(userSearchTerm) {
     });
     const data = await response.json();
     console.log(data);
-    gameData.innerHTML = "";
+    gameContainer.innerHTML = "";
     data.forEach((element) => {
       // ----- Alternative display method -----
       //   const newP = document.createElement("p");
@@ -58,7 +58,7 @@ async function testAPI(userSearchTerm) {
 
       //    Put the information on the page
       let gameItem = `
-      <div>
+      <div class="game-card">
         <h2>${element.name}</h2>
         <p class="game-entry" id="${element.id}">Unique Game ID: ${element.id}</p>
         <p class="game-entry" id="${element.id}">URL: ${element.url}</p>
@@ -66,9 +66,9 @@ async function testAPI(userSearchTerm) {
         <p class="game-entry" id="${element.id}">Summary: ${element.summary}</p>
       </div>
       `;
-      gameData.insertAdjacentHTML("afterbegin", gameItem);
+      gameContainer.insertAdjacentHTML("afterbegin", gameItem);
     });
   } catch (error) {
-    response.status(500).json({ message: "Internal Server Error" });
+    // response.status(500).json({ message: "Internal Server Error" });
   }
 }
