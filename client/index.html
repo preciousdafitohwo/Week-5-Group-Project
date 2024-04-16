@@ -1,37 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Gaming Review Board</title>
-    <link rel="stylesheet" href="style.css">
+    <script src="app.js" defer type="module"></script>
+
+    <link rel="stylesheet" href="style.css" />
     <link rel="icon" href="./assets/1.ico" type="image/x-icon" />
-</head>
+    <title>The Gaming Review Board</title>
+  </head>
 
-<body id="main-container">
+  <body id="main-container">
     <div id="logo">
-        <img src="./assets/1.svg" alt="gaming logo" />
+      <img src="./assets/1.svg" alt="gaming logo" />
     </div>
     <div id="search">
-        <form action="/search" method="GET">
-            <input type="text" id="search-bar" name="query" placeholder="Search games">
-            <button id=search-button type="submit">Search</button>
-        </form>
+      <form action="submit" id="userSubmitForm">
+        <label for="search">
+          <input
+            type="text"
+            id="search-bar"
+            name="search"
+            placeholder="Search games"
+          />
+        </label>
+        <button id="userSubmitButton" type="submit">Search</button>
+      </form>
     </div>
     <div id="large-container">
-        <div id="left-div"></div>
-        <div class="game-container">
-            <div class="game-card"></div>
-            <div class="game-card"></div>
-            <div class="game-card"></div>
-            <div class="game-card"></div>
-            <div class="game-card"></div>
-            <div class="game-card"></div>
-            <div class="game-card"></div>
-            <div class="game-card"></div>
-        </div>
+      <div id="left-div"></div>
+      <div class="game-container">
+        <div class="game-card"></div>
+        <div class="game-card"></div>
+        <div class="game-card"></div>
+        <div class="game-card"></div>
+        <div class="game-card"></div>
+        <div class="game-card"></div>
+        <div class="game-card"></div>
+        <div class="game-card"></div>
+      </div>
+      <div id="gameData"></div>
     </div>
-</body>
-
+  </body>
 </html>
+
