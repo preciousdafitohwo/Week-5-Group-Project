@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -9,39 +10,41 @@
     <link rel="stylesheet" href="style.css" />
     <link rel="icon" href="./assets/1.ico" type="image/x-icon" />
     <title>The Gaming Review Board</title>
-  </head>
+</head>
 
-  <body id="main-container">
-    <div id="logo">
-      <img src="./assets/1.svg" alt="gaming logo" />
-    </div>
-    <div id="search">
-      <form action="submit" id="userSubmitForm">
-        <label for="search">
-          <input
-            type="text"
-            id="search-bar"
-            name="search"
-            placeholder="Search games"
-          />
-        </label>
-        <button id="userSubmitButton" type="submit">Search</button>
-      </form>
+<body id="main-container">
+    <div id="top-header">
+        <div id="logo">
+            <img src="./assets/1.png" alt="gaming logo" />
+        </div>
+        <div id="search">
+            <form action="submit" id="userSubmitForm">
+                <label for="search">
+                    <input type="text" id="search-bar" name="search" placeholder="Search games" />
+                </label>
+                <button id="userSubmitButton" type="submit">Search</button>
+            </form>
+        </div>
     </div>
     <div id="large-container">
-      <div id="left-div"></div>
-      <div class="game-container">
-        <div class="game-card"></div>
-        <div class="game-card"></div>
-        <div class="game-card"></div>
-        <div class="game-card"></div>
-        <div class="game-card"></div>
-        <div class="game-card"></div>
-        <div class="game-card"></div>
-        <div class="game-card"></div>
-      </div>
-      <div id="gameData"></div>
+        <div id="left-div"></div>
+        <div id="game-container">
+            <div class="game-card"></div>
+            <div class="game-card"></div>
+            <div class="game-card"></div>
+            <div class="game-card"></div>
+            <div class="game-card"></div>
+            <div class="game-card"></div>
+            <div class="game-card"></div>
+            <div class="game-card"></div>
+        </div>
+        <div id="gameData"></div>
     </div>
-  </body>
-</html>
 
+    <div id="footer">
+        <footer> This app was created by Precious, Frankie, Praise and Esther. &copy; 2024
+        </footer>
+    </div>
+</body>
+
+</html>

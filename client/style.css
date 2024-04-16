@@ -1,26 +1,34 @@
+body{
+width: 100vw;
+border: 1px solid white;
+box-sizing: border-box;
+padding: 0%;
+margin: 0%;
+}
 
 #main-container{
     background-color: black;
- }
+     }
 
- #logo{
-        border-radius: 10px;
-    margin-left: 20px;
+#top-header{
+        display: flex;
+    flex-direction: row;
+    gap: 20%;
+    align-items: center;
+}
+
+ #logo img{
+border-radius: 5px;
     width: 150px;
     height: 150px;
-    background-color: rgb(88, 85, 85);
-    margin-bottom: 80px;
-    
+   
 }
 #search{
        width: 90%;
-    position: absolute;
-    top: 50px;
-    right: -360px;
-}
+    }
 
 #search-bar{
-    width: 60%;
+    width: 75%;
     height: 10%;
     border-radius: 20px;
     background-color: rgb(187, 177, 177);
@@ -43,7 +51,7 @@
     }
 
     #left-div{
-        width: 600px;
+        width: 20%;
         height: 700px;
         border: 1px dashed rgb(31, 12, 134);
     border-radius: 5px;
@@ -52,23 +60,41 @@
 
     #large-container{
     display: flex; 
-    justify-content: space-around; 
+    justify-content: center;
+    width: 100%;
     }
 
-    .game-container{
+    #game-container{
     width: 75%;
     display: grid;
     grid-template-columns: repeat(4, 1fr); /* creates 4 columns */
     grid-template-rows: repeat(2, auto); /* creates 2 rows */
-    gap: 10px; /* space between the divs */
-    
+        
     }
 
-.game-card{
-    width: 250px;
+    p{
+        color: white;
+    }
+
+.game-card{ 
     height: 300px;
     border: 1px dashed white;
     border-radius: 5px;
   margin-left: 15px;
   cursor: pointer;
+  overflow: scroll;
+}
+
+#footer{
+    background-color: rgb(92, 90, 90);
+    color: whitesmoke;
+    float: right;
+    width: 70%;
+    border-radius: 5px;
+    margin-bottom: 40px;
+    height: 30px;
+    font-family: cursive;
+    text-align: center;
+    padding-top: 10px;
+
 }
