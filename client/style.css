@@ -1,0 +1,74 @@
+
+#main-container{
+    background-color: black;
+ }
+
+ #logo{
+        border-radius: 10px;
+    margin-left: 20px;
+    width: 150px;
+    height: 150px;
+    background-color: rgb(88, 85, 85);
+    margin-bottom: 80px;
+    
+}
+#search{
+       width: 90%;
+    position: absolute;
+    top: 50px;
+    right: -360px;
+}
+
+#search-bar{
+    width: 60%;
+    height: 10%;
+    border-radius: 20px;
+    background-color: rgb(187, 177, 177);
+    padding: 5px;
+    margin-right: 5px;
+    }
+
+    input::placeholder {
+        padding: 15px;
+            color: black; 
+    }
+
+    #search-button{
+    width: 80px;
+    height: 10%;
+    border-radius: 20px;
+    background-color: rgb(187, 177, 177);;
+    padding: 5px;
+    cursor: pointer;
+    }
+
+    #left-div{
+        width: 600px;
+        height: 700px;
+        border: 1px dashed rgb(31, 12, 134);
+    border-radius: 5px;
+    
+    }
+
+    #large-container{
+    display: flex; 
+    justify-content: space-around; 
+    }
+
+    .game-container{
+    width: 75%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* creates 4 columns */
+    grid-template-rows: repeat(2, auto); /* creates 2 rows */
+    gap: 10px; /* space between the divs */
+    
+    }
+
+.game-card{
+    width: 250px;
+    height: 300px;
+    border: 1px dashed white;
+    border-radius: 5px;
+  margin-left: 15px;
+  cursor: pointer;
+}
