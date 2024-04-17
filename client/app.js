@@ -1,10 +1,30 @@
 //  ----- Get some things from index.html -----
-const gameData = document.getElementById("gameData");
-const userSubmitForm = document.getElementById("userSubmitForm");
-const gameContainer = document.getElementById("game-container")
-//  ----- Get user search term -----
+const userGameSearch = document.getElementById("userGameSearch");
+const gameContainer = document.getElementById("game-container");
 
-async function handleFormSubmit(event) {
+//  ----- Get an authorisation token to use with the API -----
+async function getAuthorizationToken() {
+  try {
+    const response = await fetch("http://localhost:8080/get-auth", {
+      method: "POST"
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to get authorization token");
+    }
+
+    const data = await response.json();
+    console.log(data);
+    getGamesFromAPI("spider-man");
+  } catch (error) {
+    console.error("Error fetching authorization token:", error.message);
+  }
+}
+
+getAuthorizationToken();
+
+//  ----- Get user search term -----
+async function handleUserSearch(event) {
   gameContainer.innerHTML = "";
   let loading = `<p class="loading">Loading new games...</p>`;
   gameContainer.insertAdjacentHTML("afterbegin", loading);
@@ -21,14 +41,13 @@ async function handleFormSubmit(event) {
 
   let userSearchTerm = formData.get("search");
   console.log(`"${userSearchTerm}"`);
-  await testAPI(`${userSearchTerm}`);
+  await getGamesFromAPI(`${userSearchTerm}`);
 }
 
-userSubmitForm.addEventListener("submit", (event) => handleFormSubmit(event));
+userGameSearch.addEventListener("submit", (event) => handleUserSearch(event));
 
 //  ----- Get game information from the IGDB API -----
-
-async function testAPI(userSearchTerm) {
+async function getGamesFromAPI(userSearchTerm) {
   console.log(userSearchTerm);
   try {
     const response = await fetch("http://localhost:8080/fetch-igdb", {
@@ -49,7 +68,9 @@ async function testAPI(userSearchTerm) {
     const data = await response.json();
     console.log(data);
     gameContainer.innerHTML = "";
-    data.forEach((element) => {
+    data.forEach(async (element) => {
+      let imageURL = await getImageUrl(element.id);
+      console.log("Image url = ", imageURL);
       // ----- Alternative display method -----
       //   const newP = document.createElement("p");
       //   newP.textContent = element.name;
@@ -59,7 +80,7 @@ async function testAPI(userSearchTerm) {
       //    Put the information on the page
       let gameItem = `
       <div class="game-card game-id-${element.id}">
-      <img src="./assets/1.png" alt="logo" width=100% height=70%/>
+      <img src="${imageURL}" alt="${element.name}" class="game-img"/>
         <h2>${element.name}</h2>
         <p class="game-entry" id="${element.id}">Unique Game ID: ${element.id}</p>       
         <p class="game-entry" id="${element.id}">Cover number (We'll use this to find images from their other endpoints): ${element.cover}</p>
@@ -86,21 +107,45 @@ async function testAPI(userSearchTerm) {
       `;
       gameContainer.insertAdjacentHTML("afterbegin", gameItem);
 
-      const toggleBtn = document.querySelector(`.toggle-reviews.toggle-reviews-id-${element.id}`)
-      toggleBtn.addEventListener("click", () => toggleReview(element.id))
+      const toggleBtn = document.querySelector(
+        `.toggle-reviews.toggle-reviews-id-${element.id}`
+      );
+      toggleBtn.addEventListener("click", () => toggleReview(element.id));
     });
   } catch (error) {
     // response.status(500).json({ message: "Internal Server Error" });
   }
 }
 
-
+//  ----- Function for the toggle buttons to show/hide the form and reviews -----
 function toggleReview(gameId) {
-  const gameCard = document.querySelector(`.game-id-${gameId}`)
+  const gameCard = document.querySelector(`.game-id-${gameId}`);
   if (gameCard) {
-    const form = gameCard.querySelector(".new-review")
-    form.classList.toggle("hidden")
-    const allReviews = gameCard.querySelector(".reviews-wrapper")
-    allReviews.classList.toggle("hidden")
+    const form = gameCard.querySelector(".new-review");
+    form.classList.toggle("hidden");
+    const allReviews = gameCard.querySelector(".reviews-wrapper");
+    allReviews.classList.toggle("hidden");
+  }
+}
+
+//  ----- Get game image from the IGDB API -----
+async function getImageUrl(gameId) {
+  console.log(gameId);
+  try {
+    const response = await fetch("http://localhost:8080/fetch-igdb-image", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ fields: "*", game: gameId })
+    });
+    const data = await response.json();
+    console.log(data);
+    console.log(data[0]);
+    console.log(data[0].cover.url);
+    console.log(data[0].cover.url.replace("t_thumb", "t_720p"));
+    return data[0].cover.url.replace("t_thumb", "t_cover_big");
+  } catch (error) {
+    console.error("Error processing element:", error);
   }
 }
