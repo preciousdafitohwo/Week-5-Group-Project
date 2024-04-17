@@ -5,9 +5,12 @@ const gameContainer = document.getElementById("game-container");
 //  ----- Get an authorisation token to use with the API -----
 async function getAuthorizationToken() {
   try {
-    const response = await fetch("http://localhost:8080/get-auth", {
-      method: "POST"
-    });
+    const response = await fetch(
+      "https://week-5-group-project.onrender.com/get-auth",
+      {
+        method: "POST",
+      }
+    );
 
     if (!response.ok) {
       throw new Error("Failed to get authorization token");
@@ -15,7 +18,7 @@ async function getAuthorizationToken() {
 
     const data = await response.json();
     console.log(data);
-    getGamesFromAPI("spider-man");
+    getGamesFromAPI("fifa");
   } catch (error) {
     console.error("Error fetching authorization token:", error.message);
   }
@@ -50,21 +53,24 @@ userGameSearch.addEventListener("submit", (event) => handleUserSearch(event));
 async function getGamesFromAPI(userSearchTerm) {
   console.log(userSearchTerm);
   try {
-    const response = await fetch("http://localhost:8080/fetch-igdb", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        search: userSearchTerm,
-        fields: "*",
-        limit: 10
+    const response = await fetch(
+      "https://week-5-group-project.onrender.com/fetch-igdb",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          search: userSearchTerm,
+          fields: "*",
+          limit: 10,
 
-        // We can definte on client side what data gets sent to the request, to be returned to the user.
-        // fields:
-        //   " category,collection,cover,created_at,dlcs,expanded_games,expansions,first_release_date,franchise,genres,involved_companies,keywords,name,platforms,rating,rating_count,release_dates,screenshots,summary,tags,url,websites;"
-      })
-    });
+          // We can definte on client side what data gets sent to the request, to be returned to the user.
+          // fields:
+          //   " category,collection,cover,created_at,dlcs,expanded_games,expansions,first_release_date,franchise,genres,involved_companies,keywords,name,platforms,rating,rating_count,release_dates,screenshots,summary,tags,url,websites;"
+        }),
+      }
+    );
     const data = await response.json();
     console.log(data);
     gameContainer.innerHTML = "";
@@ -87,7 +93,7 @@ async function getGamesFromAPI(userSearchTerm) {
         <div class="review-form flex">
         <button class="toggle-reviews toggle-reviews-id-${element.id}">Leave a Review</button>
 
-        <form class="new-review game-reviews-id-${element.id} flex hidden">
+        <form class="new-review game-reviews-id-${element.id} flex hidden">    
           <p class="regular-text">Please leave a review!</p>
           <div class="username flex">
             <label for="name" class="regular-text">Name:</label>
@@ -98,7 +104,7 @@ async function getGamesFromAPI(userSearchTerm) {
             <input type="text" name="review" placeholder="Leave a review" />
           </div>
           <div class="submit flex">
-          <button type="submit" id="submitComment-${element.id}">Send Review!</button>
+          <input type="submit" id="submitReview-${element.id}">Send Review!</input>
           </div>
         </form>
         <div class="reviews-wrapper hidden"></div>
@@ -110,10 +116,52 @@ async function getGamesFromAPI(userSearchTerm) {
       const toggleBtn = document.querySelector(
         `.toggle-reviews.toggle-reviews-id-${element.id}`
       );
+      const sendReviewBtn = document.querySelector(
+        `.new-review.game-reviews-id-${element.id}`
+      );
       toggleBtn.addEventListener("click", () => toggleReview(element.id));
+      console.log(sendReviewBtn);
+      console.log(document.getElementById(`submitReview-${element.id}`));
+
+      sendReviewBtn.addEventListener("submit", (event) =>
+        sendReview(event, element.id)
+      );
+      getReviews(element.id);
     });
   } catch (error) {
     // response.status(500).json({ message: "Internal Server Error" });
+  }
+}
+
+// send review function to later assign to the send review button as an event handler
+
+async function sendReview(event, game_id) {
+  event.preventDefault();
+  const userName = event.target.name.value;
+  const review = event.target.review.value;
+  console.log(userName);
+  console.log(review);
+  console.log(game_id);
+  try {
+    const jsonData = JSON.stringify({
+      name: userName,
+      review: review,
+      game_id: game_id,
+    });
+    console.log(jsonData);
+    const response = await fetch(
+      "https://week-5-group-project.onrender.com/leave-review",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: jsonData,
+      }
+    );
+    if (response.ok) {
+      getReviews(game_id);
+    }
+  } catch (error) {
+    console.error("error submitting review", error);
   }
 }
 
@@ -132,13 +180,16 @@ function toggleReview(gameId) {
 async function getImageUrl(gameId) {
   console.log(gameId);
   try {
-    const response = await fetch("http://localhost:8080/fetch-igdb-image", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ fields: "*", game: gameId })
-    });
+    const response = await fetch(
+      "https://week-5-group-project.onrender.com/fetch-igdb-image",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ fields: "*", game: gameId }),
+      }
+    );
     const data = await response.json();
     console.log(data);
     console.log(data[0]);
@@ -147,5 +198,40 @@ async function getImageUrl(gameId) {
     return data[0].cover.url.replace("t_thumb", "t_cover_big");
   } catch (error) {
     console.error("Error processing element:", error);
+  }
+}
+
+// getting the reviews from the databse
+
+async function getReviews(game_id) {
+  try {
+    const response = await fetch(
+      `https://week-5-group-project.onrender.com/reviews/?id=${game_id}`
+    );
+    const dataReview = await response.json();
+
+    const gameCard = document.querySelector(`.game-card.game-id-${game_id}`);
+    const reviewsWrapper = gameCard.querySelector(".reviews-wrapper");
+    if (gameCard) {
+      // Clear existing comments
+      gameCard
+        .querySelectorAll(".reviews-individual")
+        .forEach((review) => review.remove());
+
+      // Append the updated reviewss to the review wrapper
+      for (const review of dataReview) {
+        const newReview = `
+        <div class="reviews-individual flex">
+          <p class="review-from">Review from: ${review.name}</p>
+          <p class="review-content">${review.review}</p>
+        </div>
+      `;
+        reviewsWrapper.insertAdjacentHTML("beforeend", newReview);
+      }
+    } else {
+      console.error("Review wrapper not found");
+    }
+  } catch (error) {
+    console.error("Error updating reviews section:", error);
   }
 }
