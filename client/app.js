@@ -5,9 +5,12 @@ const gameContainer = document.getElementById("game-container");
 //  ----- Get an authorisation token to use with the API -----
 async function getAuthorizationToken() {
   try {
-    const response = await fetch("http://localhost:8080/get-auth", {
-      method: "POST"
-    });
+    const response = await fetch(
+      "https://week-5-group-project.onrender.com/get-auth",
+      {
+        method: "POST"
+      }
+    );
 
     if (!response.ok) {
       throw new Error("Failed to get authorization token");
@@ -50,21 +53,24 @@ userGameSearch.addEventListener("submit", (event) => handleUserSearch(event));
 async function getGamesFromAPI(userSearchTerm) {
   console.log(userSearchTerm);
   try {
-    const response = await fetch("http://localhost:8080/fetch-igdb", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        search: userSearchTerm,
-        fields: "*",
-        limit: 10
+    const response = await fetch(
+      "https://week-5-group-project.onrender.com/fetch-igdb",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          search: userSearchTerm,
+          fields: "*",
+          limit: 10
 
-        // We can definte on client side what data gets sent to the request, to be returned to the user.
-        // fields:
-        //   " category,collection,cover,created_at,dlcs,expanded_games,expansions,first_release_date,franchise,genres,involved_companies,keywords,name,platforms,rating,rating_count,release_dates,screenshots,summary,tags,url,websites;"
-      })
-    });
+          // We can definte on client side what data gets sent to the request, to be returned to the user.
+          // fields:
+          //   " category,collection,cover,created_at,dlcs,expanded_games,expansions,first_release_date,franchise,genres,involved_companies,keywords,name,platforms,rating,rating_count,release_dates,screenshots,summary,tags,url,websites;"
+        })
+      }
+    );
     const data = await response.json();
     console.log(data);
     gameContainer.innerHTML = "";
@@ -132,13 +138,16 @@ function toggleReview(gameId) {
 async function getImageUrl(gameId) {
   console.log(gameId);
   try {
-    const response = await fetch("http://localhost:8080/fetch-igdb-image", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ fields: "*", game: gameId })
-    });
+    const response = await fetch(
+      "https://week-5-group-project.onrender.com/fetch-igdb-image",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ fields: "*", game: gameId })
+      }
+    );
     const data = await response.json();
     console.log(data);
     console.log(data[0]);
