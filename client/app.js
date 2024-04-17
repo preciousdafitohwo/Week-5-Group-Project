@@ -82,10 +82,7 @@ async function getGamesFromAPI(userSearchTerm) {
       <div class="game-card game-id-${element.id}">
       <img src="${imageURL}" alt="${element.name}" class="game-img"/>
         <h2>${element.name}</h2>
-        <p class="game-entry" id="${element.id}">Unique Game ID: ${element.id}</p>       
-        <p class="game-entry" id="${element.id}">Cover number (We'll use this to find images from their other endpoints): ${element.cover}</p>
-        <div class="review-form flex">
-        <button class="toggle-reviews toggle-reviews-id-${element.id}">Leave a Review</button>
+                <button class="toggle-reviews toggle-reviews-id-${element.id}">Leave a Review</button>
 
         <form class="new-review game-reviews-id-${element.id} flex hidden">
           <p class="regular-text">Please leave a review!</p>
