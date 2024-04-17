@@ -3,6 +3,10 @@ import express, { response } from "express";
 import Database from "better-sqlite3";
 import cors from "cors";
 
+//  ----- Variables we'll use across the API calls -----
+const ClientId = "0bhe2twfupz91ap9npnm787grb2e3h";
+let AuthorizationString = "";
+
 const app = express();
 const db = new Database("database.db");
 const PORT = 8080;
@@ -12,16 +16,43 @@ app.use(cors()); // allows the client to communicate with the server without bei
 // get request to our review database for Reviews.
 app.get("/reviews", function (req, res) {
   const reviews = db.prepare("SELECT * FROM review_board").all();
-  res.json(reviews)});
-  
-app.post("/leave-review", function (res, req){
+  res.json(reviews);
+});
+
+app.post("/leave-review", function (res, req) {
   const newReview = db.prepare(`
     INSERT INTO review_board (name, review, game_id) VALUES (?, ?, ?)
   `);
-  newReview.run(req.body.name, request.body.message, request.body.game_id)
+  newReview.run(req.body.name, request.body.message, request.body.game_id);
 });
 
 //  ----- IGDB uses the POST method basically exclusively -----
+//  ----- This gets the access-token we need to use the API -----
+app.post("/get-auth", async (req, res) => {
+  try {
+    const response = await fetch(
+      "https://id.twitch.tv/oauth2/token?client_id=0bhe2twfupz91ap9npnm787grb2e3h&client_secret=satv3ukvax9ckvm27g0vv5qj4k01jl&grant_type=client_credentials",
+      {
+        method: "POST"
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error("Failed to get authorization token");
+    }
+
+    const data = await response.json();
+    console.log(data);
+    console.log(data.access_token);
+
+    AuthorizationString = `Bearer ${data.access_token}`;
+    res.json({ message: "Success in getting Auth!", AuthorizationString });
+  } catch (error) {
+    console.error("Error getting authorization:", error.message);
+    res.status(500).json({ error: "Failed to get authorization token" });
+  }
+});
+
 //  ----- This is our main method to fetch game information-----
 app.post("/fetch-igdb", async (req, res) => {
   console.log(req.body);
@@ -36,8 +67,8 @@ app.post("/fetch-igdb", async (req, res) => {
       headers: {
         Accept: "application/json",
         // Shhhh these are secret...
-        "Client-ID": "0bhe2twfupz91ap9npnm787grb2e3h",
-        Authorization: "Bearer 5avatphm88wu5nvuau1r7c2p4f4msz"
+        "Client-ID": ClientId,
+        Authorization: AuthorizationString
       },
       //   Syntax to make our request, taken from the client submission
       body: `search "${req.body.search}"; fields ${req.body.fields}; limit ${req.body.limit};`
@@ -50,6 +81,23 @@ app.post("/fetch-igdb", async (req, res) => {
   } catch (error) {
     res.status(500).json({ message: "Internal Server Error" });
   }
+});
+
+//  ----- Get image for the game -----
+app.post("/fetch-igdb-image", async (req, res) => {
+  console.log(req.body);
+  const response = await fetch("https://api.igdb.com/v4/games", {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      // Shhhh these are secret...
+      "Client-ID": ClientId,
+      Authorization: AuthorizationString
+    },
+    body: `fields cover.*; where id = ${req.body.game};`
+  });
+  const data = await response.json();
+  res.json(data);
 });
 
 app.listen(PORT, () => {
