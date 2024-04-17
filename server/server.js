@@ -15,15 +15,19 @@ app.use(cors()); // allows the client to communicate with the server without bei
 
 // get request to our review database for Reviews.
 app.get("/reviews", function (req, res) {
-  const reviews = db.prepare("SELECT * FROM review_board").all();
+  const reviews = db
+    .prepare(`SELECT * FROM review_board WHERE game_id = ${req.query.id}`)
+    .all();
   res.json(reviews);
 });
 
-app.post("/leave-review", function (res, req) {
+app.post("/leave-review", function (req, res) {
   const newReview = db.prepare(`
     INSERT INTO review_board (name, review, game_id) VALUES (?, ?, ?)
   `);
-  newReview.run(req.body.name, request.body.message, request.body.game_id);
+  console.log(req.body);
+  newReview.run(req.body.name, req.body.review, req.body.game_id);
+  res.send("Success");
 });
 
 //  ----- IGDB uses the POST method basically exclusively -----
@@ -33,7 +37,7 @@ app.post("/get-auth", async (req, res) => {
     const response = await fetch(
       "https://id.twitch.tv/oauth2/token?client_id=0bhe2twfupz91ap9npnm787grb2e3h&client_secret=satv3ukvax9ckvm27g0vv5qj4k01jl&grant_type=client_credentials",
       {
-        method: "POST"
+        method: "POST",
       }
     );
 
@@ -68,10 +72,10 @@ app.post("/fetch-igdb", async (req, res) => {
         Accept: "application/json",
         // Shhhh these are secret...
         "Client-ID": ClientId,
-        Authorization: AuthorizationString
+        Authorization: AuthorizationString,
       },
       //   Syntax to make our request, taken from the client submission
-      body: `search "${req.body.search}"; fields ${req.body.fields}; limit ${req.body.limit};`
+      body: `search "${req.body.search}"; fields ${req.body.fields}; limit ${req.body.limit};`,
 
       // We could define on server side what data gets back to the user:
       //   body: "fields category,collection,cover,created_at,dlcs,expanded_games,expansions,first_release_date,franchise,genres,involved_companies,keywords,name,platforms,rating,rating_count,release_dates,screenshots,summary,tags,url,websites;"
@@ -92,9 +96,9 @@ app.post("/fetch-igdb-image", async (req, res) => {
       Accept: "application/json",
       // Shhhh these are secret...
       "Client-ID": ClientId,
-      Authorization: AuthorizationString
+      Authorization: AuthorizationString,
     },
-    body: `fields cover.*; where id = ${req.body.game};`
+    body: `fields cover.*; where id = ${req.body.game};`,
   });
   const data = await response.json();
   res.json(data);
