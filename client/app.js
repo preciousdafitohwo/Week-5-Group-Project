@@ -63,7 +63,7 @@ async function getGamesFromAPI(userSearchTerm) {
         body: JSON.stringify({
           search: userSearchTerm,
           fields: "*",
-          limit: 10,
+          limit: 12,
 
           // We can definte on client side what data gets sent to the request, to be returned to the user.
           // fields:
@@ -88,19 +88,19 @@ async function getGamesFromAPI(userSearchTerm) {
       <div class="game-card game-id-${element.id}">
       <img src="${imageURL}" alt="${element.name}" class="game-img"/>
         <h2>${element.name}</h2>
-                <button class="toggle-reviews toggle-reviews-id-${element.id}">Leave a Review</button>
+                <button class="toggle-reviews toggle-reviews-id-${element.id}">View/Leave Review</button>
 
-        <form class="new-review game-reviews-id-${element.id} flex hidden">    
-                    <div class="username-flex">
-            <label for="name" class="regular-text"><span class="span">Name:</span></label>
-            <span class="span"><input type="text" name="name" placeholder="Type in your username" /></span>
+        <form class="new-review game-reviews-id-${element.id} hidden">    
+                    <div class="username">
+            <label for="name" class="regular-text"><span class="span"><strong>Username:</span></strong></label>
+            <span class="span"><input type="text" name="name" placeholder="" /></span>
           </div>
-          <div class="review flex">
-            <label for="review" class="regular-text"><span class="span">Comment:</span></label>
-            <span class="span"><input type="text" name="review" placeholder="Leave a review" /></span>
+          <div class="review">
+            <label for="review" class="regular-text"><span class="span"><strong>User review:</strong></span></label>
+            <span class="span"><input type="text" name="review" placeholder="" /></span>
           </div>
-          <div class="submit-flex">
-          <button type="submit" id="submitReview-${element.id}" class="review-button">Send Review!</button>
+          <div class="submit">
+          <button type="submit" id="submitReview-${element.id}" class="review-button">Send Review</button>
                     </div>
         </form>
         <div class="reviews-wrapper hidden"></div>
@@ -206,20 +206,27 @@ async function getReviews(game_id) {
     );
     const dataReview = await response.json();
 
+      // a let to get the number of reviews on a game and display it on the associated game card
+    let numberOfReviews = `
+    <p>${dataReview.length} Reviews so far</p>`;
+    console.log(numberOfReviews);
     const gameCard = document.querySelector(`.game-card.game-id-${game_id}`);
     const reviewsWrapper = gameCard.querySelector(".reviews-wrapper");
+    const h2 = gameCard.querySelector("h2");
+    
+    h2.insertAdjacentHTML("afterend", numberOfReviews);
+
     if (gameCard) {
       // Clear existing comments
       gameCard
         .querySelectorAll(".reviews-individual")
         .forEach((review) => review.remove());
-
+        
       // Append the updated reviewss to the review wrapper
       for (const review of dataReview) {
         const newReview = `
         <div class="reviews-individual flex">
-          <p class="review-from">Review from: ${review.name}</p>
-          <p class="review-content">${review.review}</p>
+          <p class="review-from">${review.name} said:  ${review.review}</p>
         </div>
       `;
         reviewsWrapper.insertAdjacentHTML("beforeend", newReview);
