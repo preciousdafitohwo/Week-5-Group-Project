@@ -100,9 +100,9 @@ async function getGamesFromAPI(userSearchTerm) {
             <label for="review" class="regular-text">Comment:</label>
             <input type="text" name="review" placeholder="Leave a review" />
           </div>
-          <div class="submit flex">
-          <input type="submit" id="submitReview-${element.id}">Send Review!</input>
-          </div>
+          <div class="submit-flex">
+          <button type="submit" id="submitReview-${element.id}" class="review-button">Send Review!</button>
+                    </div>
         </form>
         <div class="reviews-wrapper hidden"></div>
       </div>
