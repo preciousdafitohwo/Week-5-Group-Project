@@ -15,7 +15,8 @@
   flex-direction: row;
   gap: 20%;
   align-items: center;
-  border-bottom: 10%;
+  margin-bottom: 3%;
+  width: 100%;
 }
 
 
@@ -30,20 +31,20 @@
 }
 
 #search {
-  width: 90%;
-  
+  width: 900px;
+    display: flex;
+
 
 }
 
 #search-bar {
-  width: 75%;
+  width: 700px;
   height: 10%;
   border-radius: 20px;
   background-color: rgb(187, 177, 177);
   padding: 5px;
   margin-left: 0;
-  border: 2px dashed blue;
-}
+  }
 
 input::placeholder {
   padding: 15px;
@@ -51,11 +52,11 @@ input::placeholder {
 }
 
 #search-button {
-  width: 18%;
-  height: 10%;
-  border-radius: 20px;
+  width: 10%;
+ 
+  /* border-radius: 20px; */
   background-color: rgb(187, 177, 177);
-  padding: 5px;
+  border-top: 40px;
   cursor: pointer;
   margin-right: auto;
  
@@ -74,6 +75,19 @@ input::placeholder {
 gap: 20px;
  
 }
+.username-flex{
+  display: flex;
+      flex-direction: row;
+    justify-content: space-between;
+    
+}
+.span{
+    color: white;
+ }
+
+ .regular-text{
+  width: auto;
+ }
 
 p,
 h2 {
@@ -84,7 +98,7 @@ h2 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 400px;
+  height: 90%;
   border-radius: 10px;
   cursor: pointer;
   overflow-y: scroll;
@@ -93,6 +107,7 @@ h2 {
   padding: 10px;
   text-align: center;
   position: relative;
+  width: 90%;
 }
 
 .game-card::-webkit-scrollbar {
@@ -113,6 +128,9 @@ h2 {
   height: 70%;
    object-fit: fill;
   border-radius: 5px;
+  
+  
+    border-bottom: 65px;
 } 
 
 .game-card:hover{
@@ -145,30 +163,28 @@ h2 {
 #userSubmitButton{
 width: 70px;
 height: 37px;
-padding: 5px;
+padding: 15px;
 background-color: blueviolet;
 color: black;
 border-radius: 10px;
 }
 
-#userSubmitButton:hover{
-  background-color: brown;
-  color: azure;
-}
-
 .toggle-reviews{
-  position: fixed;
-  margin-left: 68%;
-  margin-top: 80%;
+  position: absolute;
+  margin-left: 63%;
+  margin-top: 75%;
   padding: 3px;
+  width: 35%;
   border-radius: 5px;
   background-color: chartreuse;
+  cursor: pointer;
 }
 
 .review-button{  
   padding: 4px;
-  border-radius: 3px;
+  border-radius: 7px;
   background-color: rgb(94, 184, 5);
+  cursor: pointer;
 }
 
 .review-button :hover{  
@@ -278,6 +294,7 @@ padding-top: 15px;
     align-items: center; 
 padding-top: 15px;
 flex-direction: row;
+
 }
 }
 
