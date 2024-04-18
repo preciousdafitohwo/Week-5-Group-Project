@@ -8,7 +8,7 @@ async function getAuthorizationToken() {
     const response = await fetch(
       "https://week-5-group-project.onrender.com/get-auth",
       {
-        method: "POST",
+        method: "POST"
       }
     );
 
@@ -58,22 +58,28 @@ async function getGamesFromAPI(userSearchTerm) {
       {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "application/json"
         },
         body: JSON.stringify({
           search: userSearchTerm,
           fields: "*",
-          limit: 12,
+          limit: 12
 
           // We can definte on client side what data gets sent to the request, to be returned to the user.
           // fields:
           //   " category,collection,cover,created_at,dlcs,expanded_games,expansions,first_release_date,franchise,genres,involved_companies,keywords,name,platforms,rating,rating_count,release_dates,screenshots,summary,tags,url,websites;"
-        }),
+        })
       }
     );
     const data = await response.json();
     console.log(data);
     gameContainer.innerHTML = "";
+
+    if (data.length === 0) {
+      let failed = `<p class="failed">We don't have games for that search term. Try again!</p>`;
+      gameContainer.insertAdjacentHTML("afterbegin", failed);
+      return;
+    }
     data.forEach(async (element) => {
       let imageURL = await getImageUrl(element.id);
       console.log("Image url = ", imageURL);
@@ -88,6 +94,7 @@ async function getGamesFromAPI(userSearchTerm) {
       <div class="game-card game-id-${element.id}">
       <img src="${imageURL}" alt="${element.name}" class="game-img"/>
         <h2>${element.name}</h2>
+        <p class="number-of-reviews"></p>
                 <button class="toggle-reviews toggle-reviews-id-${element.id}">View/Leave Review</button>
 
         <form class="new-review game-reviews-id-${element.id} hidden">    
@@ -142,7 +149,7 @@ async function sendReview(event, game_id) {
     const jsonData = JSON.stringify({
       name: userName,
       review: review,
-      game_id: game_id,
+      game_id: game_id
     });
     console.log(jsonData);
     const response = await fetch(
@@ -150,7 +157,7 @@ async function sendReview(event, game_id) {
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: jsonData,
+        body: jsonData
       }
     );
     if (response.ok) {
@@ -181,9 +188,9 @@ async function getImageUrl(gameId) {
       {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "application/json"
         },
-        body: JSON.stringify({ fields: "*", game: gameId }),
+        body: JSON.stringify({ fields: "*", game: gameId })
       }
     );
     const data = await response.json();
@@ -206,22 +213,21 @@ async function getReviews(game_id) {
     );
     const dataReview = await response.json();
 
-      // a let to get the number of reviews on a game and display it on the associated game card
-    let numberOfReviews = `
-    <p>${dataReview.length} Reviews so far</p>`;
+    // a let to show the number of reviews on a game and display it on the associated game card
+    let numberOfReviews = `${dataReview.length} Reviews so far`;
     console.log(numberOfReviews);
     const gameCard = document.querySelector(`.game-card.game-id-${game_id}`);
+
     const reviewsWrapper = gameCard.querySelector(".reviews-wrapper");
-    const h2 = gameCard.querySelector("h2");
-    
-    h2.insertAdjacentHTML("afterend", numberOfReviews);
+    const reviewDisplay = gameCard.querySelector(".number-of-reviews");
+    reviewDisplay.innerHTML = numberOfReviews;
 
     if (gameCard) {
       // Clear existing comments
       gameCard
         .querySelectorAll(".reviews-individual")
         .forEach((review) => review.remove());
-        
+
       // Append the updated reviewss to the review wrapper
       for (const review of dataReview) {
         const newReview = `
