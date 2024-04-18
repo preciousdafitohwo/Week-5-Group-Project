@@ -10,40 +10,48 @@
   background-color: rgb(36, 35, 35);
 }
 
+#userGameSearch{
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  justify-content: center;
+}
+
 #top-header {
   display: flex;
   flex-direction: row;
-  gap: 20%;
+  gap: 20px;
   align-items: center;
   margin-bottom: 3%;
   width: 100%;
+  padding: 10px;
 }
 
 
 #logo img{
   border-radius: 15px;
-  width: 170px;
-  height: 170px;
-  margin-right: auto;
-  margin-left: 20px;
-  margin-top: 20px;
-
+  width: 50%;
+  -webkit-filter: drop-shadow(0px 16px 10px rgba(0, 0, 225, 0.6));
+  filter: drop-shadow(0px 16px 10px rgba(0, 0, 225, 0.6));
 }
 
 #search {
-  width: 900px;
-    display: flex;
-
-
+  width: 90%;
+  
 }
 
 #search-bar {
-  width: 700px;
-  height: 10%;
+  width: 65%;
   border-radius: 20px;
   background-color: rgb(187, 177, 177);
   padding: 5px;
   margin-left: 0;
+  font-size: 22px;
+
+  }
+  #search-bar:hover {
+    background-color: white;
+    color: darkblue;
   }
 
 input::placeholder {
@@ -98,25 +106,26 @@ h2 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 90%;
+  height: 500px;
   border-radius: 10px;
-  cursor: pointer;
   overflow-y: scroll;
   transition: all 1s;
   background-color: rgb(49, 49, 49);
   padding: 10px;
   text-align: center;
-  position: relative;
   width: 90%;
 }
 
+.new-review {
+  margin-top: 10px;
+}
 .game-card::-webkit-scrollbar {
   width: 5px;  /* Sets the scrollbar width */
 }
 
 /* Set the style of the scrollbar track */
 .game-card::-webkit-scrollbar-track {
-  background-color: #972323;  /* Sets the track's background color */
+  background-color: white;  /* Sets the track's background color */
 }
 
 .game-card::-webkit-scrollbar-track {
@@ -124,8 +133,8 @@ h2 {
 }
 
 .game-card img {
-  width: 100%;
-  height: 70%;
+  width: 80%;
+
    object-fit: fill;
   border-radius: 5px;
   
@@ -134,73 +143,93 @@ h2 {
 } 
 
 .game-card:hover{
-  transform: scale(1.125);
+  background-color: grey;
+  transform: scale(1.15);
+  /* z-index: 100; */
 }
 
 
 #footer {
   background-color: rgb(92, 90, 90);
-  color: rgb(12, 231, 77);
+  font-size: x-large;
+  color: whitesmoke;
+  padding-bottom: 15px;
    width: 100%;
    height: 100%;
   border-radius: 5px;
     font-family: cursive;
   text-align: center;
   padding-top: 10px;
-  border: 1px solid brown;
+  /* border: 1px solid rgb(92, 90, 90); */
+  margin-top: 10px;
 }
 
-#footer :hover{
- font-size: x-large;
-  color: whitesmoke;
-  padding-bottom: 15px;
-}
+
 
 .hidden {
   display: none;
 }
 
 #userSubmitButton{
-width: 70px;
-height: 37px;
-padding: 15px;
-background-color: blueviolet;
-color: black;
+width: 10%;
+padding: 10px;
+background-color: darkblue;
+color: white;
 border-radius: 10px;
+font-size: 22px;
+}
+#userSubmitButton:hover {background-color: white;
+color: darkblue}
+.toggle-reviews{
+  /* position: absolute;
+  bottom: 5%;
+  left: 0; */
+  padding: 3px;
+  width: 45%;
+  border-radius: 5px;
+  background-color: darkblue;
+  cursor: pointer;
+  color: white;
+}
+.toggle-reviews:hover{
+  background-color: white;
+  color: darkblue;
+}
+.reviews-wrapper {
+  width: 100%;
+}
+.reviews-individual {border-bottom: 1px solid black;
+  width: 100%;
+  padding-top: 10px;
+  
 }
 
-.toggle-reviews{
-  position: absolute;
-  margin-left: 63%;
-  margin-top: 75%;
-  padding: 3px;
-  width: 35%;
-  border-radius: 5px;
-  background-color: chartreuse;
-  cursor: pointer;
-}
 
 .review-button{  
   padding: 4px;
   border-radius: 7px;
-  background-color: rgb(94, 184, 5);
+  background-color: darkblue;
   cursor: pointer;
+  color: white;
+  width: 150px;
+  margin-bottom: 10px;
 }
 
-.review-button :hover{  
-  background-color: blueviolet;
-  color: whitesmoke;
+.review-button:hover{  
+  background-color: white;
+  color: darkblue
 }
 .username,
 .review {
   color: white;
 }
 
+
 /*--------------------------------------------------------------------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------------------------------------------------------------------*/
-@media (min-width: 200px) and (max-width: 500px){
+@media(max-width:450px){
 
   #game-container {
     width: 90%;
@@ -209,44 +238,73 @@ border-radius: 10px;
     gap: 10px;
         }
 
-        
-        #top-header{
-          display: flex; 
-    flex-direction: column;
-    justify-content: center; 
-      align-items: center; 
-      padding-bottom: 20px;
-      padding-top: 15px;
-        }
-        
-        #logo img{
-          
-          margin-right: auto;
-          width: 120px;
-          height: 80px;
-          margin-top: 20px;
-        
-        }
-        #search {
-          width: 90%;
-          margin-left: 10px;
-        }
-        
-        #search-bar {
-          width: 75%;
-          height: 10%;
-          border-radius: 20px;
-          background-color: rgb(187, 177, 177);
-          padding: 5px;
-          
-        }
+        #userSubmitButton {
+          width: 25%;
+    padding: 5px;
+    background-color: darkblue;
+    color: white;
+    border-radius: 20px;
+    font-size: 16px;
 }
-@media (min-width: 500px) and (max-width: 800px){
+ #userGameSearch {
+  display: flex;
+  flex-direction: row;
+  gap: 0;
+  justify-content: none;
+ }
+ #top-header{
+  display: flex; 
+flex-direction: column;
+justify-content: center; 
+align-items: center; 
+padding-bottom: 20px;
+padding-top: 15px;
+}
+
+.game-card{width: 100%;
+margin-bottom: 15px;}
+
+#logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#logo img{
+   width: 50%;
+}
+
+
+#search {
+  width: 90%;
+  margin-left: 10px;
+  margin-top: 16px;
+}
+
+#search-bar {
+  width: 75%;
+  height: 10%;
+  border-radius: 20px;
+  background-color: rgb(187, 177, 177);
+  padding: 5px;
+  font-size: 16px;
+  
+}
+footer {padding: 2.25px;
+font-size: medium;}
+       
+}
+        
+
+
+
+
+@media (min-width: 451px) and (max-width: 889px){
   #game-container {
     width: 90%;
     display: grid;
     grid-template-columns: repeat(2, 1fr); /* creates 1 column */
-    gap: 10px;
+    /* gap: 10px; */
   }
 
   #top-header{
@@ -257,18 +315,27 @@ align-items: center;
 padding-bottom: 20px;
 padding-top: 15px;
   }
-  
-  #logo img{
-    
-    margin-right: auto;
-    width: 120px;
-    height: 80px;
-    margin-top: 20px;
-  
+  #logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
+   
+    #logo img{
+      width: 50%;
+   }
+  
+ 
   #search {
     width: 80%;
     margin-left: 10px;
+    margin-top: 16px;
+  }
+  
+  #userSubmitButton {
+    padding: 5px;
+    width: 25%;
+    border-radius: 20px;
   }
   
   #search-bar {
@@ -279,8 +346,25 @@ padding-top: 15px;
     padding: 5px;
     
   }
+  #large-container {
+    justify-content: center;
+  }
+  .game-card{
+    margin-left: 20px;
+    margin-bottom: 20px;
+  }
+.toggle-reviews {width: 50%;}
+/* .toggle-reviews:hover {
+  background-color: white;
+  color: darkblue;
+} */
+
+footer {
+  padding: 0;
 }
-@media (min-width: 800px) and (max-width: 1024px){
+}
+
+@media (min-width: 900px) and (max-width: 1225px){
   #game-container {
     width: 90%;
     display: grid;
@@ -296,12 +380,47 @@ padding-top: 15px;
 flex-direction: row;
 
 }
+#search {
+  width: 65% !important;
+  margin-top: 16px;
+  /* padding-right: 4.5%; */
+  
+}
+#search-bar {
+  width: 100%;
+}
+#userGameSearch {
+  display: flex;
+  flex-direction: row;
+  gap: 0;
+  justify-content: none;
+}
+.toggle-reviews{
+  width: 70%;
+}
+#userSubmitButton {
+  padding: 5px;
+  width: 25%;
+  border-radius: 20px;
+}
+#top-header {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  align-items: center;
+  margin-bottom: 3%;
+  width: 100%;
+  padding: 2%;
 }
 
 
+#logo img{
+  border-radius: 15px;
+  width: 30;
+  -webkit-filter: drop-shadow(0px 16px 10px rgba(0, 0, 225, 0.6));
+  filter: drop-shadow(0px 16px 10px rgba(0, 0, 225, 0.6));
+}
+#logo {width: 30%;}
 
+}
 
-
-pictures are stretched, keep aspect ratio intact
-name and comment colon ALIGN
-send review button to the right underneath the fields
