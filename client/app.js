@@ -165,7 +165,7 @@ async function sendReview(event, game_id) {
         `submitReview-${game_id}`
       );
       const successPopup = document.createElement("img");
-      successPopup.src = "./assets/tick.png";
+      successPopup.src = "./client/assets/tick.png";
       addReviewButton.insertAdjacentElement("beforebegin", successPopup);
       addReviewButton.style.border = "3px solid green";
       formArea.style.backgroundColor = "darkgreen";
