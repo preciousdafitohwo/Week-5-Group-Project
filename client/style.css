@@ -6,6 +6,10 @@
   margin: 0;
 }
 
+button {
+  border: 2px solid grey;
+}
+
 #main-container {
   background-color: rgb(36, 35, 35);
 }
@@ -43,8 +47,9 @@
   border-radius: 20px;
   background-color: rgb(187, 177, 177);
   padding: 5px;
-  margin-left: 0;
+  margin-right: 10px;
   font-size: 22px;
+  border: 3px solid grey;
 }
 #search-bar:hover {
   background-color: white;
@@ -100,6 +105,7 @@ h2 {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+  padding: 10px;
 }
 
 .failed {
@@ -116,7 +122,7 @@ h2 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 500px;
+  height: 400px;
   border-radius: 10px;
   overflow-y: scroll;
   transition: all 1s;
@@ -152,7 +158,7 @@ h2 {
 }
 
 .game-card:hover {
-  background-color: grey;
+  background-color: rgb(78, 78, 78);
   transform: scale(1.15);
   /* z-index: 100; */
 }
@@ -183,15 +189,11 @@ h2 {
   color: white;
   border-radius: 10px;
   font-size: 22px;
+  border: 1px solid grey;
 }
-#userSubmitButton:hover {
-  background-color: white;
-  color: darkblue;
-}
+
 .toggle-reviews {
-  /* position: absolute;
-  bottom: 5%;
-  left: 0; */
+  margin-top: 10px;
   padding: 3px;
   width: 45%;
   border-radius: 5px;
@@ -207,10 +209,30 @@ h2 {
   width: 100%;
 }
 .reviews-individual {
-  border-bottom: 1px solid black;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
   width: 100%;
+  padding-left: 10px;
   padding-top: 10px;
   padding-bottom: 10px;
+  background-color: rgba(0, 0, 0, 0.4);
+  text-align: left;
+}
+
+.submit {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: end;
+}
+
+.submit img {
+  margin: 5px;
+  padding: 5px;
+  height: 35px;
+  width: auto;
+  background-color: rgba(0, 255, 55, 0.329);
+  border-radius: 50px;
 }
 
 .review-button {
@@ -220,6 +242,7 @@ h2 {
   cursor: pointer;
   color: white;
   width: 150px;
+  margin-top: 10px;
   margin-bottom: 10px;
 }
 
@@ -232,11 +255,19 @@ h2 {
   color: white;
 }
 
+#userSubmitButton:hover {
+  background-color: white;
+  color: darkblue;
+}
+
 /*--------------------------------------------------------------------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------------------------------------------------------------------*/
 @media (max-width: 450px) {
+  .game-card {
+    height: 480px;
+  }
   #game-container {
     width: 90%;
     display: grid;
@@ -255,7 +286,7 @@ h2 {
   #userGameSearch {
     display: flex;
     flex-direction: row;
-    gap: 0;
+    gap: 20px;
     justify-content: none;
   }
   #top-header {
@@ -303,6 +334,9 @@ h2 {
 }
 
 @media (min-width: 451px) and (max-width: 889px) {
+  .game-card {
+    height: 450px;
+  }
   #game-container {
     width: 90%;
     display: grid;
@@ -367,7 +401,10 @@ h2 {
   }
 }
 
-@media (min-width: 900px) and (max-width: 1225px) {
+@media (min-width: 900px) and (max-width: 1500px) {
+  .game-card {
+    height: 500px;
+  }
   #game-container {
     width: 90%;
     display: grid;
@@ -428,11 +465,13 @@ h2 {
 @media (min-width: 1700px) {
   .game-card {
     width: 65%;
+    height: 500px;
   }
 }
 
 @media (min-width: 1500px) and (max-width: 1699px) {
   .game-card {
     width: 70%;
+    height: 450px;
   }
 }

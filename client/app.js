@@ -162,6 +162,25 @@ async function sendReview(event, game_id) {
     );
     if (response.ok) {
       getReviews(game_id);
+      // document.querySelector(`.game-reviews-id-${game_id}`).reset();
+      // Success!
+      // const gameCard = document.querySelector(`.game-id-${game_id}`);
+      const formArea = document.querySelector(`.game-reviews-id-${game_id}`);
+      const addReviewButton = document.getElementById(
+        `submitReview-${game_id}`
+      );
+      const successPopup = document.createElement("img");
+      successPopup.src = "./assets/tick.png";
+      addReviewButton.insertAdjacentElement("beforebegin", successPopup);
+      addReviewButton.style.border = "3px solid green";
+      formArea.style.backgroundColor = "darkgreen";
+      setTimeout(function () {
+        // Removes the message
+        addReviewButton.style.border = "1px solid grey";
+        formArea.style.backgroundColor = "rgba(0, 0, 0, 0)";
+
+        successPopup.remove();
+      }, 1500);
     }
   } catch (error) {
     console.error("error submitting review", error);
