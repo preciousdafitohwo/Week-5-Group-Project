@@ -91,14 +91,13 @@ async function getGamesFromAPI(userSearchTerm) {
                 <button class="toggle-reviews toggle-reviews-id-${element.id}">Leave a Review</button>
 
         <form class="new-review game-reviews-id-${element.id} flex hidden">    
-          <p class="regular-text">Please leave a review!</p>
-          <div class="username flex">
-            <label for="name" class="regular-text">Name:</label>
-            <input type="text" name="name" placeholder="Type in your username" />
+                    <div class="username-flex">
+            <label for="name" class="regular-text"><span class="span">Name:</span></label>
+            <span class="span"><input type="text" name="name" placeholder="Type in your username" /></span>
           </div>
           <div class="review flex">
-            <label for="review" class="regular-text">Comment:</label>
-            <input type="text" name="review" placeholder="Leave a review" />
+            <label for="review" class="regular-text"><span class="span">Comment:</span></label>
+            <span class="span"><input type="text" name="review" placeholder="Leave a review" /></span>
           </div>
           <div class="submit-flex">
           <button type="submit" id="submitReview-${element.id}" class="review-button">Send Review!</button>
