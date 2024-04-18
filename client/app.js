@@ -257,4 +257,15 @@ async function getReviews(game_id) {
   } catch (error) {
     console.error("Error updating reviews section:", error);
   }
-}
+};
+
+// delete function to delete review
+
+// fetch("https://game-review-board.onrender.com/delete",   
+// {
+//     method: "DELETE",
+//     body: JSON.stringify({game_id: game_id}),
+//     headers: {
+//         "Content-Type": "application/json"
+//     },
+// });

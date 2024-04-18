@@ -104,6 +104,11 @@ app.post("/fetch-igdb-image", async (req, res) => {
   res.json(data);
 });
 
+// app.delete("/delete", function (req, res){
+//   const deleteMessage = db.prepare(`DELETE FROM review_board WHERE game_id = ?`);
+//   deleteMessage.run(req.body.game_id);
+// });
+
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
