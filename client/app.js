@@ -88,10 +88,7 @@ async function getGamesFromAPI(userSearchTerm) {
       <div class="game-card game-id-${element.id}">
       <img src="${imageURL}" alt="${element.name}" class="game-img"/>
         <h2>${element.name}</h2>
-        <p class="game-entry" id="${element.id}">Unique Game ID: ${element.id}</p>       
-        <p class="game-entry" id="${element.id}">Cover number (We'll use this to find images from their other endpoints): ${element.cover}</p>
-        <div class="review-form flex">
-        <button class="toggle-reviews toggle-reviews-id-${element.id}">Leave a Review</button>
+                <button class="toggle-reviews toggle-reviews-id-${element.id}">Leave a Review</button>
 
         <form class="new-review game-reviews-id-${element.id} flex hidden">    
           <p class="regular-text">Please leave a review!</p>
@@ -103,9 +100,9 @@ async function getGamesFromAPI(userSearchTerm) {
             <label for="review" class="regular-text">Comment:</label>
             <input type="text" name="review" placeholder="Leave a review" />
           </div>
-          <div class="submit flex">
-          <input type="submit" id="submitReview-${element.id}">Send Review!</input>
-          </div>
+          <div class="submit-flex">
+          <button type="submit" id="submitReview-${element.id}" class="review-button">Send Review!</button>
+                    </div>
         </form>
         <div class="reviews-wrapper hidden"></div>
       </div>
