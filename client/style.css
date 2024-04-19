@@ -9,6 +9,7 @@
 button {
   border: 2px solid hsl(0, 0%, 54%);
   background-color: hsl(240, 50%, 20%);
+  font-weight: 300;
 }
 
 #main-container {
@@ -48,6 +49,8 @@ button {
   border-radius: 20px;
   background-color: rgb(187, 177, 177);
   padding: 5px;
+  padding-left: 15px;
+
   margin-right: 10px;
   font-size: 22px;
   border: 3px solid grey;
@@ -107,6 +110,9 @@ h2 {
   flex-direction: column;
   align-items: flex-end;
   padding: 10px;
+  border-radius: 15px;
+  margin-bottom: 10px;
+  font-weight: 300;
 }
 
 .failed {
@@ -131,6 +137,10 @@ h2 {
   padding: 10px;
   text-align: center;
   width: 90%;
+}
+
+.number-of-reviews {
+  font-weight: 300;
 }
 
 .new-review {
@@ -159,10 +169,10 @@ h2 {
 }
 
 .game-card:hover {
-  background-color: rgb(78, 78, 78);
+  background-color: hsl(0, 0%, 25%);
   transform: scale(1.15);
-  -webkit-filter: drop-shadow(0px 16px 10px rgba(105, 105, 105, 0.6));
-  filter: drop-shadow(0px 16px 10px rgba(105, 105, 105, 0.6));
+  -webkit-filter: drop-shadow(0px 3px 5px rgba(105, 105, 105, 0.6));
+  filter: drop-shadow(0px 3px 5px rgba(105, 105, 105, 0.6));
 }
 
 #footer {
@@ -226,6 +236,13 @@ h2 {
   flex-direction: row;
   align-items: center;
   justify-content: end;
+  gap: 10px;
+}
+
+.sumbit-success {
+  padding: 10px;
+  border-radius: 15px;
+  background-color: hsla(108, 80%, 52%, 0.336);
 }
 
 .submit img {
@@ -269,6 +286,9 @@ h2 {
 @media (max-width: 450px) {
   .game-card {
     height: 480px;
+  }
+  .game-card:hover {
+    transform: scale(1.05);
   }
   #game-container {
     width: 90%;
