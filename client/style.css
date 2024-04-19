@@ -169,16 +169,25 @@ h2 {
 
   border: 2px solid hsl(0, 0%, 50%);
 
-  -webkit-filter: drop-shadow(0px 2px 5px rgba(105, 105, 105, 0.6));
-  filter: drop-shadow(0px 2px 4px rgba(105, 105, 105, 0.6));
+  /* -webkit-filter: drop-shadow(0px 2px 5px rgba(105, 105, 105, 0.6));
+  filter: drop-shadow(0px 2px 4px rgba(105, 105, 105, 0.6)); */
+
+  box-shadow: 0px 12px 5px -10px rgba(105, 105, 105, 0.8),
+    /* bottom shadow */ -12px 0px 5px -10px rgba(105, 105, 105, 0.8),
+    /* left shadow */ 12px 0px 5px -10px rgba(105, 105, 105, 0.8); /* right shadow */
 }
 
 .game-card:hover {
   z-index: 5;
   background-color: hsl(0, 0%, 25%);
   transform: scale(1.15);
-  -webkit-filter: drop-shadow(0px 3px 5px rgba(105, 105, 105, 0.6));
-  filter: drop-shadow(0px 3px 5px rgba(105, 105, 105, 0.6));
+  /* -webkit-filter: drop-shadow(0px 3px 5px rgba(105, 105, 105, 0.6));
+  filter: drop-shadow(0px 3px 5px rgba(105, 105, 105, 0.6)); */
+
+  box-shadow: 0px 12px 6px 1px rgba(105, 105, 105, 0.6),
+    /* bottom shadow */ -8px 1px 6px 1px rgba(105, 105, 105, 0.6),
+    /* left shadow */ 10px 1px 6px 2px rgba(105, 105, 105, 0.6),
+    /* right shadow */ 0px -8px 6px 2px rgba(105, 105, 105, 0.6); /* top shadow */
 }
 
 #footer {

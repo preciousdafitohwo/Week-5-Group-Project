@@ -249,8 +249,13 @@ async function getReviews(game_id) {
         const newReview = `
         <div class="reviews-individual flex">
           <p class="review-from">${review.name} said:  ${review.review}</p>
+      
+
         </div>
       `;
+        // <button class="delete-review-button" id="delete-review-id${game_id}">Del</button>
+        // const deleteReviewBtn = gameCard.querySelector(`.delete-review-id-${game_id}`);
+        // deleteReviewBtn.addEventListener("click", deleteReview(game_id));
         reviewsWrapper.insertAdjacentHTML("beforeend", newReview);
       }
     } else {
@@ -262,7 +267,7 @@ async function getReviews(game_id) {
 }
 
 // delete function to delete review
-
+// async deleteReview (gameID){
 // fetch("https://game-review-board.onrender.com/delete",
 // {
 //     method: "DELETE",
@@ -270,4 +275,4 @@ async function getReviews(game_id) {
 //     headers: {
 //         "Content-Type": "application/json"
 //     },
-// });
+// });}
