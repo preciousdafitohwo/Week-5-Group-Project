@@ -159,6 +159,8 @@ async function sendReview(event, game_id) {
     if (response.ok) {
       // Success! Lets get the reviews:
       getReviews(game_id);
+      // Clear the form input fields
+      document.querySelector(`.game-reviews-id-${game_id}`).reset();
       // And let's let the user know by making some things green:
       const formArea = document.querySelector(`.game-reviews-id-${game_id}`);
       const addReviewButton = document.getElementById(
