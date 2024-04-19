@@ -37,7 +37,7 @@ app.post("/get-auth", async (req, res) => {
     const response = await fetch(
       "https://id.twitch.tv/oauth2/token?client_id=0bhe2twfupz91ap9npnm787grb2e3h&client_secret=satv3ukvax9ckvm27g0vv5qj4k01jl&grant_type=client_credentials",
       {
-        method: "POST",
+        method: "POST"
       }
     );
 
@@ -72,10 +72,10 @@ app.post("/fetch-igdb", async (req, res) => {
         Accept: "application/json",
         // Shhhh these are secret...
         "Client-ID": ClientId,
-        Authorization: AuthorizationString,
+        Authorization: AuthorizationString
       },
       //   Syntax to make our request, taken from the client submission
-      body: `search "${req.body.search}"; fields ${req.body.fields}; limit ${req.body.limit};`,
+      body: `search "${req.body.search}"; fields ${req.body.fields}; limit ${req.body.limit};`
 
       // We could define on server side what data gets back to the user:
       //   body: "fields category,collection,cover,created_at,dlcs,expanded_games,expansions,first_release_date,franchise,genres,involved_companies,keywords,name,platforms,rating,rating_count,release_dates,screenshots,summary,tags,url,websites;"
@@ -96,9 +96,9 @@ app.post("/fetch-igdb-image", async (req, res) => {
       Accept: "application/json",
       // Shhhh these are secret...
       "Client-ID": ClientId,
-      Authorization: AuthorizationString,
+      Authorization: AuthorizationString
     },
-    body: `fields cover.*; where id = ${req.body.game};`,
+    body: `fields cover.*; where id = ${req.body.game};`
   });
   const data = await response.json();
   res.json(data);

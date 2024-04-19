@@ -4,7 +4,6 @@
 
 **Link to project:** https://game-review-board.onrender.com/
 
-
 ### The Team
 
 - Ester
@@ -14,13 +13,11 @@
 
 This week we were to work in a mighty group of four, combining front-end display and interactivity, with backend management of inputs and data, making use of Node,js, Express and SQL.
 
-
 ### Our Links
 
 - **Trello:** https://trello.com/b/BBKqUeGZ/teched-week-5-group-project-game-review-site
 - **Figma:** https://www.figma.com/file/oLgYaGuzEmax2NtVVRGaXK/Welcome-to-FigJam?type=whiteboard&node-id=0-1&t=UefACiswzs33nZ7q-0
 - **IGDB API We Used:** https://www.igdb.com/api
-
 
 ### Objectives
 
@@ -32,7 +29,7 @@ There were many sections to this weeks project:
 - **Back-End Development**: Build a server with Express that handles HTTP requests and communicates with a SQLite database.
 - **Database Integration**: Design a database and use SQLite to store, update, and retrieve data efficiently using SQL queries.
 - **Collaboration**: Work as a team to design and build a web application that showcases your skills in full-stack development,
-and collaborate on code using Git and GitHub.
+  and collaborate on code using Git and GitHub.
 
 ### Requirements & Deliverables
 
@@ -76,48 +73,45 @@ We were aware of scope creep, especially with how extensive the API was and how 
 - The reviews populate as they should, with the correct game!
 
 ### What went well
+
 The team was able to come up with the idea for the project very early on, with an achievable MVP and possible stretch goals to attempt depending on time constraint. Communication within the team was excellent and we were able to divide the tasks that needed doing based on our individual strengths. we used pair programming for debugging both on the front and back end, we reviewed each others commit on gitHub before merging to main branch, we achieved our MVP on time which allowed us to spend extra time on css styling and improving the user interface.
 
 **Planning**
-planning was initially carried out in group discussion on discord, using figma to brainstorm what our MVP was going to be, the user stories and how the potential functionality of the app. we also used trello to assign tasks and manage progress
 
+- Planning was initially carried out in group discussion on discord, using figma to brainstorm what our MVP was going to be, the user stories and how the potential functionality of the app. we also used trello to assign tasks and manage progress
 
 **Functionality**
+
 - The app had to be able to fetch game data from an API and display them onto the page
-- A link between our database data and the API data to allow reviews to be grouped based on the unique game id from the API 
+- A link between our database data and the API data to allow reviews to be grouped based on the unique game id from the API
 - Users should be able to click on individual games to leave a review and view previously left reviews
 - Users should be able to search for a game using the search bar.
 
-
 **User Interface and Design**
-we took inspiration from RAWG.IO for the user interface and design and later settled on a grid display of 3 game cards per row for desktop view, 2 and 1 game card per row for tablet and mobile view respectively as well
 
+- We took inspiration from RAWG.IO for the user interface and design and later settled on a grid display of 3 game cards per row for desktop view, 2 and 1 game card per row for tablet and mobile view respectively as well
 
 **Presentation**
--Used canva.com to create and design the presentation. Our team member Prasie took the lead on this and delivered an excellent design which blended nicely with the colour scheme and them of the app. He also shared the canva link with the rest of us to allow any potential edits to be carried out remotely by any member of the team. 
 
+- Used canva.com to create and design the presentation. Our team member Praise took the lead on this and delivered an excellent design which blended nicely with the colour scheme and theme of the app. He also shared the canva link with the rest of us to allow any potential edits to be carried out remotely by any member of the team.
 
 ### Sticky points and Difficulties
 
-
 **Difficulty 1**
+
 - Getting the associate game img url to display alongside the game data on our page. This really took some impressive work from Frankie to achieve as the img url was had a different endpoint to the game data from the API, so a separate fetch request had to be made which linked the unique game id from the game data endpoint to its respective img url from a different endpoint.
 
 **Difficulty 2**
-- After managing to link the game data to their respective img url, we found out that the img's were displaying as thumbnail sizes, and on reading the documentation from the API, Frankie was able to use the .replace method on img url to display a larger sized image.
 
-
+- After managing to link the game data to their respective img url, we found out that the img's were displaying as thumbnail sizes, and on reading the documentation from the API, Frankie was able to use this method: "data[0].cover.url.replace("t_thumb", "t_720p")" on the img url to display a larger sized image.
 
 ### Future improvements
 
 - increase accessibility by improving the use/functionality of tab controls and utilising aria-labels
-- introducing an  and delete review endpoint - to allow reviews to be updated and deleted accordingly
+- introducing an update and delete review endpoint - to allow reviews to be updated and deleted accordingly
 - "Load more games" button at the bottom of the page to allow more search results to be displayed on the page
 - "Favourite games" button which allows users to log the games they are currently playing and a diary of comments/reviews about their progress on each of those games
-
 
 ### Resources
 
 IGDB API Docs - https://api-docs.igdb.com/?javascript
-
-
