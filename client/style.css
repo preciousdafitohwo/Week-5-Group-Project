@@ -61,6 +61,7 @@ button {
 }
 
 input::placeholder {
+  font-style: italic;
   padding: 15px;
   color: black;
 }
@@ -173,6 +174,7 @@ h2 {
 }
 
 .game-card:hover {
+  z-index: 5;
   background-color: hsl(0, 0%, 25%);
   transform: scale(1.15);
   -webkit-filter: drop-shadow(0px 3px 5px rgba(105, 105, 105, 0.6));
