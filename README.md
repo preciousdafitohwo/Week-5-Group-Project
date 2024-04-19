@@ -2,7 +2,7 @@
 
 ## Project - Design and Build a Full Stack Application:
 
-**Link to project:** 
+**Link to project:** https://game-review-board.onrender.com/
 
 
 ### The Team
@@ -69,29 +69,28 @@ We were aware of scope creep, especially with how extensive the API was and how 
 
 ### Features!
 
-- Theres's a client, a server and a database!
-- The client ...
-- The database ...
-- The server ...
-- The API ...
-- The reviews ...
+- There's a client, a server and a database!
+- The client allows a user to search for games, and displays results on screen, with images, from the IGDB database. It allows a user to post and view reviews.
+- The server communicates with the IDGB API for games and images, and also communicates with our database for reviews.
+- The database stores users names, reviews, and the ID of the game (from IGDB) they're commenting on.
+- The reviews populate as they should, with the correct game!
 
 ### What went well
 The team was able to come up with the idea for the project very early on, with an achievable MVP and possible stretch goals to attempt depending on time constraint. Communication within the team was excellent and we were able to divide the tasks that needed doing based on our individual strengths. we used pair programming for debugging both on the front and back end, we reviewed each others commit on gitHub before merging to main branch, we achieved our MVP on time which allowed us to spend extra time on css styling and improving the user interface.
 
 **Planning**
-planning was inintially carried out in group discussion on discord, using figma to brainstorm what our MVP was going to be, the user stories and how the potential functionality of the app. we also used trello to assign tasks and manage progress
+planning was initially carried out in group discussion on discord, using figma to brainstorm what our MVP was going to be, the user stories and how the potential functionality of the app. we also used trello to assign tasks and manage progress
 
 
 **Functionality**
 - The app had to be able to fetch game data from an API and display them onto the page
-- A link between our databse data and the API data to allow reviews to be grouped based on the unique game id from the API 
+- A link between our database data and the API data to allow reviews to be grouped based on the unique game id from the API 
 - Users should be able to click on individual games to leave a review and view previously left reviews
 - Users should be able to search for a game using the search bar.
 
 
 **User Interface and Design**
-we took inspiration from RAWG.IO for the user interface and design and later settled on a grid display of 3 game cards per row for desktop view, 2 and 1 game card per row for tablet and mobile view respectively aswell
+we took inspiration from RAWG.IO for the user interface and design and later settled on a grid display of 3 game cards per row for desktop view, 2 and 1 game card per row for tablet and mobile view respectively as well
 
 
 **Presentation**
@@ -102,18 +101,18 @@ we took inspiration from RAWG.IO for the user interface and design and later set
 
 
 **Difficulty 1**
-- Getting the associate game img url to display alongside the game data on our page. This really took some impressive work from Frankie to achieve as the img url was had a different endpoint to the game data from the API, so a seperate fetch request had to be made which linked the unique game id from the game data endpoint to its respective img url from a different endpoint.
+- Getting the associate game img url to display alongside the game data on our page. This really took some impressive work from Frankie to achieve as the img url was had a different endpoint to the game data from the API, so a separate fetch request had to be made which linked the unique game id from the game data endpoint to its respective img url from a different endpoint.
 
 **Difficulty 2**
-- After managing to link the game data to their respective img url, we found out that the img's were displaying as thumbnail sizes, and on reading the documentation from the API, Frankie was able to to use the .replace method on img url to display a larger sized image.
+- After managing to link the game data to their respective img url, we found out that the img's were displaying as thumbnail sizes, and on reading the documentation from the API, Frankie was able to use the .replace method on img url to display a larger sized image.
 
 
 
 ### Future improvements
 
-- increase accessibility by improving the use/functinality of tab controls and utilising aria-labels
+- increase accessibility by improving the use/functionality of tab controls and utilising aria-labels
 - introducing an  and delete review endpoint - to allow reviews to be updated and deleted accordingly
-- "Load more games" button at the buttom of the page to allow more search results to be displayed on the page
+- "Load more games" button at the bottom of the page to allow more search results to be displayed on the page
 - "Favourite games" button which allows users to log the games they are currently playing and a diary of comments/reviews about their progress on each of those games
 
 
