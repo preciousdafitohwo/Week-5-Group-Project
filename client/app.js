@@ -164,10 +164,12 @@ async function sendReview(event, game_id) {
       const addReviewButton = document.getElementById(
         `submitReview-${game_id}`
       );
-      const successPopup = document.createElement("img");
-      successPopup.src = "./client/assets/tick.png";
+      const successPopup = document.createElement("p");
+      successPopup.textContent = "Posted!";
+      successPopup.classList.add("sumbit-success");
+      // successPopup.src = "assets/tick.png";
       addReviewButton.insertAdjacentElement("beforebegin", successPopup);
-      addReviewButton.style.border = "3px solid green";
+      addReviewButton.style.border = "3px solid hsla(108, 80%, 52%, 0.336)";
       formArea.style.backgroundColor = "darkgreen";
       setTimeout(function () {
         // Removes the message
@@ -257,11 +259,11 @@ async function getReviews(game_id) {
   } catch (error) {
     console.error("Error updating reviews section:", error);
   }
-};
+}
 
 // delete function to delete review
 
-// fetch("https://game-review-board.onrender.com/delete",   
+// fetch("https://game-review-board.onrender.com/delete",
 // {
 //     method: "DELETE",
 //     body: JSON.stringify({game_id: game_id}),
